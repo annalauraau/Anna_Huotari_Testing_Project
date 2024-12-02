@@ -1,0 +1,105 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Documentation	
+
+This test suite verifies the functionality of the Project feature. It includes CRUD operations such as Create, Read, Update, and Delete for projects. The tests cover both positive scenarios (successful operations) and negative scenarios (failure due to invalid inputs or duplicate actions).
+
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	
+
+- Ensure the application is accessible and the user is logged in.
+- A clean environment with no projects having the same name as the ones being tested.
+
+Post Condition	
+
+- Verify the appropriate status messages are displayed for each operation.
+- Ensure data integrity after performing CRUD operations.
+
+Tags
+
+- Project
+- PositiveTests
+- NegativeTests
+
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Project creation field variables
+
+# Project Creation Field Variables
+ProjectBaseUrl = https://gitlab.com/projects/new
+BlankProjectName = "FirstProject"
+TemplateProjectName = "TemplateProject"
+UpdatedProjectName = "UpdatedTemplateProject"
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create blank project
+	Create template project 
+	Update name of template project
+	Delete template project
+	Valide that message is showing Project 'First project ' was successfully created.
+
+Positive Test Cases:
+
+Create a blank project
+
+Step 1: Navigate to ${ProjectBaseUrl}.
+Step 2: Select the option to create a blank project.
+Step 3: Enter ${BlankProjectName} in the project name field.
+Step 4: Click the "Create" button.
+Expected Result: A message is displayed: "Project 'FirstProject' was successfully created."
+Create a template project
+
+Step 1: Navigate to ${ProjectBaseUrl}.
+Step 2: Select the option to create a project from a template.
+Step 3: Choose a predefined template (e.g., "Software Development").
+Step 4: Enter ${TemplateProjectName} in the project name field.
+Step 5: Click the "Create" button.
+Expected Result: The template project is created successfully, and a confirmation message is displayed.
+Update the name of a template project
+
+Step 1: Navigate to the settings page of the ${TemplateProjectName} project.
+Step 2: Edit the project name field and enter ${UpdatedProjectName}.
+Step 3: Save the changes.
+Expected Result: The project name is updated, and a confirmation message is displayed.
+Delete the template project
+
+Step 1: Navigate to the settings page of the ${UpdatedProjectName} project.
+Step 2: Locate and click the "Delete Project" button.
+Step 3: Confirm the deletion.
+Expected Result: The project is deleted, and a success message is displayed.
+Validate that a message is displayed for project creation success
+
+Step 1: Perform the steps to create a project (e.g., ${BlankProjectName}).
+Expected Result: A success message like "Project 'FirstProject' was successfully created." should appear.
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Create a blank project with the previous same name
+
+Negative Test Cases:
+
+Create a blank project with the same name as an existing project
+Step 1: Navigate to ${ProjectBaseUrl}.
+Step 2: Select the option to create a blank project.
+Step 3: Enter ${BlankProjectName} in the project name field (same as the name of an existing project).
+Step 4: Click the "Create" button.
+Expected Result: An error message is displayed, indicating that a project with this name already exists.

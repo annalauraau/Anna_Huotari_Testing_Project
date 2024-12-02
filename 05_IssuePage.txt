@@ -1,0 +1,82 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+# TODO: Write Precondition and Postcondition, Tags 
+
+Pre Condition	Tips: Project must be created by the user before 
+
+-A project must be created by the user before attempting to create issues.
+-The user must have appropriate permissions to create, update, and delete issues within the project.
+
+Post Condition	
+
+-The created issues are appropriately saved, updated, or deleted as expected.
+-Ensure data consistency and proper system messages for each action.
+
+Tags
+
+-Issues
+-PositiveTests
+-CRUD
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Issue creation field variables, Updated name of the issue
+
+# Issue Field Variables
+ProjectBaseUrl = https://gitlab.com/projects
+CreateIssueUrl = ${ProjectBaseUrl}/issues/new
+FirstIssueTitle = "Initial Issue"
+UpdatedIssueTitle = "Updated Issue Title"
+SecondIssueTitle = "Updated Issue Title" # Same as the updated title of the first issue.
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create issue,
+ 	Update name of issue, 
+	Create second issue with privious updated name
+    Delete first issue
+
+Positive Test Cases:
+
+Create an issue
+
+Step 1: Navigate to ${CreateIssueUrl}.
+Step 2: Enter ${FirstIssueTitle} in the issue title field.
+Step 3: Enter a description for the issue (e.g., "This is the first issue for testing CRUD operations.").
+Step 4: Click the "Create Issue" button.
+Expected Result: The issue is created successfully, and a confirmation message is displayed.
+Update the name of the issue
+
+Step 1: Navigate to the details page of ${FirstIssueTitle}.
+Step 2: Locate the "Edit" button and click it.
+Step 3: Change the issue title to ${UpdatedIssueTitle}.
+Step 4: Save the changes.
+Expected Result: The issue title is updated successfully, and a confirmation message is displayed.
+Create a second issue with the previously updated name
+
+Step 1: Navigate to ${CreateIssueUrl}.
+Step 2: Enter ${SecondIssueTitle} in the issue title field (same as ${UpdatedIssueTitle}).
+Step 3: Enter a description for the issue (e.g., "This is the second issue, testing duplicate titles.").
+Step 4: Click the "Create Issue" button.
+Expected Result: The system allows the creation of the second issue but may display a warning about duplicate names, depending on the application's validation rules.
+Delete the first issue
+
+Step 1: Navigate to the details page of ${UpdatedIssueTitle}.
+Step 2: Locate the "Delete" button and click it.
+Step 3: Confirm the deletion.
+Expected Result: The issue is deleted successfully, and a confirmation message is displayed.
